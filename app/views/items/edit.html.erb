@@ -1,0 +1,34 @@
+<h1>Items#edit</h1>
+<h1>New Items</h1>
+
+<%= form_with model: @item do |f| %>
+  <%= f.text_field :rarity %>
+  <%= f.text_field :image %>
+  <%= f.text_field :no %>
+  <%= f.text_field :name %>
+  <%= f.text_field :weight %>
+  <%= f.text_field :max_lvl %>
+  <%= f.text_field :max_hp %>
+  <%= f.text_field :max_spd %>
+  <%= f.text_field :max_critical %>
+  <%= f.text_field :max_bullet %>
+  <%= f.text_field :fire_spd %>
+  <%= f.text_field :num_trajectories %>
+  <%= f.text_field :install_limit %>
+  <%= f.text_field :closeness %>
+  <%= f.text_field :skl_one %>
+  <%= f.text_field :skl_one_element %>
+  <%= f.text_field :skl_one_detail %>
+  <%= f.text_field :skl_two %>
+  <%= f.text_field :skl_two_element %>
+  <%= f.text_field :skl_two_detail %>
+  <%= f.text_field :skl_three %>
+  <%= f.text_field :skl_three_detail %>
+  <%= f.text_field :before_evl %>
+  <%= f.text_field :after_evl %>
+  <%= f.text_field :kakusei %>
+  <%= f.submit "Update" %>
+<% end %>
+
+<%= link_to "Back", items_path %>
+
