@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   
   def index
     @items = Item.all
+    
   end
 
   def new
@@ -16,6 +17,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @reviews = @item.reviews
+    @review = @reviews.new
   end
 
   def edit
@@ -41,6 +44,7 @@ class ItemsController < ApplicationController
       params.require(:item).permit(
                 :no, :name , :image, :rarity, :weight, :max_lvl, :max_atck, :max_hp, :max_spd, :max_critical,
                 :max_bullet, :fire_spd, :num_trajectories, :install_limit, :closeness, :skl_one, :skl_one_element, :skl_one_detail,
-                :skl_two, :skl_two_element, :skl_two_detail, :skl_three, :skl_three_detail, :before_evl, :after_evl, :kakusei, :shop, :gacha)
+                :skl_two, :skl_two_element, :skl_two_detail, :skl_three, :skl_three_detail, :before_evl, :after_evl, :kakusei, :shop, :gacha,
+                :user_id)
     end
 end
