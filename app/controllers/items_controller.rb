@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[show edit update destroy]
+  PER = 50
+  
   
   def index
-    @items = Item.all
-    
+    @items = Item.all.page(params[:page]).per(PER)
   end
 
   def new
@@ -17,8 +18,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @reviews = @item.reviews
+    @reviews = @item.reviews_with_id
     @review = @reviews.new
+    @star_repeat_select = Review.star_repeat_select
   end
 
   def edit
@@ -47,4 +49,5 @@ class ItemsController < ApplicationController
                 :skl_two, :skl_two_element, :skl_two_detail, :skl_three, :skl_three_detail, :before_evl, :after_evl, :kakusei, :shop, :gacha,
                 :user_id)
     end
+
 end

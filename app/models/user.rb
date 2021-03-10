@@ -5,4 +5,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
+         
+  def already_liked?(item)
+    self.likes.exists?(item_id: item.id)
+  end
 end

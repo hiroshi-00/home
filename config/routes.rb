@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
   resources :items do
     resources :reviews, only: :create
+    resource :likes, only: %i[create destroy]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
