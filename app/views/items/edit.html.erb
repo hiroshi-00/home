@@ -1,34 +1,150 @@
-<h1>Items#edit</h1>
-<h1>New Items</h1>
+<div class="container">
+  <h1>新しい商品を追加</h1>
 
-<%= form_with model: @item do |f| %>
-  <%= f.text_field :rarity %>
-  <%= f.text_field :image %>
-  <%= f.text_field :no %>
-  <%= f.text_field :name %>
-  <%= f.text_field :weight %>
-  <%= f.text_field :max_lvl %>
-  <%= f.text_field :max_hp %>
-  <%= f.text_field :max_spd %>
-  <%= f.text_field :max_critical %>
-  <%= f.text_field :max_bullet %>
-  <%= f.text_field :fire_spd %>
-  <%= f.text_field :num_trajectories %>
-  <%= f.text_field :install_limit %>
-  <%= f.text_field :closeness %>
-  <%= f.text_field :skl_one %>
-  <%= f.text_field :skl_one_element %>
-  <%= f.text_field :skl_one_detail %>
-  <%= f.text_field :skl_two %>
-  <%= f.text_field :skl_two_element %>
-  <%= f.text_field :skl_two_detail %>
-  <%= f.text_field :skl_three %>
-  <%= f.text_field :skl_three_detail %>
-  <%= f.text_field :before_evl %>
-  <%= f.text_field :after_evl %>
-  <%= f.text_field :kakusei %>
-  <%= f.submit "Update" %>
-<% end %>
+    <%= form_with model: @item do |f| %>
+      <div class="form-group">
+        <%= f.label "図鑑番号" %>
+        <%= f.number_field :no, class: "form-control" %>
+      </div>
 
-<%= link_to "Back", items_path %>
+      <div class="form-group">
+        <%= f.label "名前" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "画像" %>
+        <%= f.text_field :image, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "レアリティー" %>
+        <%= f.number_field :rarity, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "重量" %>
+        <%= f.text_field :weight, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "最大レベル" %>
+        <%= f.text_field :max_lvl, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "最大攻撃力" %>
+        <%= f.text_field :max_atck, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "最大HP" %>
+        <%= f.text_field :max_hp, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "最大移動速度" %>
+        <%= f.text_field :max_spd, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "最大会心" %>
+        <%= f.text_field :max_critical, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "最大残弾数" %>
+        <%= f.text_field :max_bullet, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "射速" %>
+        <%= f.text_field :fire_spd, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "弾道数" %>
+        <%= f.text_field :num_trajectories, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "設置上限" %>
+        <%= f.text_field :install_limit, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "飛躍回数" %>
+        <%= f.text_field :num_jumps, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "親密度" %>
+        <%= f.text_field :closeness, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "スキル1" %>
+        <%= f.text_field :skl_one, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "スキル1属性" %>
+        <%= f.text_field :skl_one_element, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "スキル1詳細" %>
+        <%= f.text_area :skl_one_detail, 
+                        row: "5",
+                        class: "form-control" 
+        %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "スキル2" %>
+        <%= f.text_field :skl_two, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "スキル2属性" %>
+        <%= f.text_field :skl_two_element, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "スキル2詳細" %>
+        <%= f.text_area :skl_two_detail,
+                        row: "5", 
+                        class: "form-control" 
+        %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "スキル3" %>
+        <%= f.text_field :skl_three, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "スキル3詳細" %>
+        <%= f.text_area :skl_three_detail, row: "5", class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "進化前" %>
+        <%= f.text_field :before_evl, class: "form-control" %>
+      </div>
 
+      <div class="form-group">
+        <%= f.label "進化後" %>
+        <%= f.number_field :after_evl, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label "覚醒絵" %>
+        <%= f.text_field :kakusei, class: "form-control" %>
+      </div>
+
+      <%= f.submit "アイテムを登録", class:"btn btn-success" %>
+    <% end %>
+
+    <%= link_to "アイテム一覧に戻る", items_path %>
+</div>
