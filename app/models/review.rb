@@ -1,8 +1,8 @@
 class Review < ApplicationRecord
-  belongs_to :item
+  # belongs_to :item
   belongs_to :user
   
-  scope :reviews_with_id, -> { where.not(item_id: nil) }
+  # scope :reviews_with_id, -> { where.not(item_id: nil) }
 
   scope :star_repeat_select, -> {
     {
