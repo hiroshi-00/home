@@ -1,7 +1,12 @@
 <div class="container">
   <h1>新しい商品を追加</h1>
 
-    <%= form_with model: @item do |f| %>
+    <%= form_with model: @item, local: true do |f| %>
+      <div class="form-group">
+        <%= f.label "かてごりー" %>
+        <%= f.collection_select :category_id, Category.all, :id, :name, {}, class: 'form-control' %>
+      </div>
+      
       <div class="form-group">
         <%= f.label "図鑑番号" %>
         <%= f.number_field :no, class: "form-control" %>
@@ -11,6 +16,18 @@
         <%= f.label "名前" %>
         <%= f.text_field :name, class: "form-control" %>
       </div>
+      
+      <!--=============================================-->
+      
+      <%= f.fields_for :item_elements do |e| %>
+        <div class="form-group">
+          
+          <%= e.label "属性" %>
+          <%= e.collection_select :element_id, Element.all, :id, :item_element, {}, class: 'form-control' %>
+        </div>
+      <% end %>
+        
+      <!--==============================================================-->
       
       <div class="form-group">
         <%= f.label "画像" %>
@@ -83,52 +100,6 @@
       </div>
       
       <div class="form-group">
-        <%= f.label "スキル1" %>
-        <%= f.text_field :skl_one, class: "form-control" %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label "スキル1属性" %>
-        <%= f.text_field :skl_one_element, class: "form-control" %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label "スキル1詳細" %>
-        <%= f.text_area :skl_one_detail, 
-                        row: "5",
-                        class: "form-control" 
-        %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label "スキル1" %>
-        <%= f.text_field :skl_two, class: "form-control" %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label "スキル1属性" %>
-        <%= f.text_field :skl_two_element, class: "form-control" %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label "スキル1詳細" %>
-        <%= f.text_area :skl_two_detail,
-                        row: "5", 
-                        class: "form-control" 
-        %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label "スキル1" %>
-        <%= f.text_field :skl_three, class: "form-control" %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label "スキル1詳細" %>
-        <%= f.text_area :skl_three_detail, row: "5", class: "form-control" %>
-      </div>
-      
-      <div class="form-group">
         <%= f.label "進化前" %>
         <%= f.text_field :before_evl, class: "form-control" %>
       </div>
@@ -142,9 +113,34 @@
         <%= f.label "覚醒絵" %>
         <%= f.text_field :kakusei, class: "form-control" %>
       </div>
+      
+      <!--=============================================-->
+      <div class="form-group">
+        <%= f.label "スキル名" %>
+        <%= f.text_field :skl_name, class: "form-control" %>
+      </div>
+      
+      <%= f.fields_for :item_elements do |e| %>
+        <div class="form-group">
+          
+          <%= e.label "スキル属性" %>
+          <%= e.collection_select :element_id, Element.all, :id, :skl_element, {}, class: 'form-control' %>
+        </div>
+      <% end %>
+      
+      <div class="form-group">
+        <%= f.label "スキル詳細" %>
+        <%= f.text_area :skl_detail, class: "form-control" %>
+      </div>   
+      
+      
+        
+      <!--==============================================================-->
 
       <%= f.submit "アイテムを登録", class:"btn btn-success" %>
     <% end %>
 
     <%= link_to "アイテム一覧に戻る", items_path %>
+    
+
 </div>

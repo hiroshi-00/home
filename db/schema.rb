@@ -10,16 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_082253) do
+ActiveRecord::Schema.define(version: 2021_03_17_075640) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ancestry"
     t.index ["ancestry"], name: "index_categories_on_ancestry"
-    t.index ["item_id"], name: "index_categories_on_item_id"
+  end
+
+  create_table "elements", force: :cascade do |t|
+    t.string "item_element"
+    t.string "skl_element"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "item_elements", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "element_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["element_id"], name: "index_item_elements_on_element_id"
+    t.index ["item_id"], name: "index_item_elements_on_item_id"
+  end
+
+  create_table "item_skills", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_skills_on_item_id"
+    t.index ["skill_id"], name: "index_item_skills_on_skill_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -39,21 +62,15 @@ ActiveRecord::Schema.define(version: 2021_03_10_082253) do
     t.integer "install_limit"
     t.integer "num_jumps"
     t.integer "closeness"
-    t.string "skl_one"
-    t.string "skl_one_element"
-    t.string "skl_one_detail"
-    t.string "skl_two"
-    t.string "skl_two_element"
-    t.string "skl_two_detail"
-    t.string "skl_three"
-    t.string "skl_three_detail"
     t.string "before_evl"
     t.string "after_evl"
     t.integer "kakusei"
     t.boolean "shop"
     t.boolean "gacha"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -71,9 +88,15 @@ ActiveRecord::Schema.define(version: 2021_03_10_082253) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "score", default: 0
     t.index ["item_id"], name: "index_reviews_on_item_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "skl_name"
+    t.text "skl_detail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

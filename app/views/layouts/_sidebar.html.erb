@@ -1,0 +1,14 @@
+<div class="container">
+  <% categories.each do |category| %>
+    <div>
+      <h5><%= link_to category.name, items_path(category: category.id) %></h5>
+    </div>
+  <% end %>
+  
+  <h2>属性</h2>
+  <% elements.each do |element| %>
+    <div>
+      <h5><%= link_to element.item_element, items_path(element: element.id) %></h5>
+    </div>
+  <% end %>
+</div>

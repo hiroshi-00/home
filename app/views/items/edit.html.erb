@@ -82,51 +82,29 @@
         <%= f.text_field :closeness, class: "form-control" %>
       </div>
       
-      <div class="form-group">
-        <%= f.label "スキル1" %>
-        <%= f.text_field :skl_one, class: "form-control" %>
-      </div>
+      <!--=============================================-->
       
-      <div class="form-group">
-        <%= f.label "スキル1属性" %>
-        <%= f.text_field :skl_one_element, class: "form-control" %>
-      </div>
+      <%= f.fields_for :item_skills do |ff| %>
       
-      <div class="form-group">
-        <%= f.label "スキル1詳細" %>
-        <%= f.text_area :skl_one_detail, 
-                        row: "5",
-                        class: "form-control" 
-        %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label "スキル2" %>
-        <%= f.text_field :skl_two, class: "form-control" %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label "スキル2属性" %>
-        <%= f.text_field :skl_two_element, class: "form-control" %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label "スキル2詳細" %>
-        <%= f.text_area :skl_two_detail,
-                        row: "5", 
-                        class: "form-control" 
-        %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label "スキル3" %>
-        <%= f.text_field :skl_three, class: "form-control" %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label "スキル3詳細" %>
-        <%= f.text_area :skl_three_detail, row: "5", class: "form-control" %>
-      </div>
+        <div class="form-group">
+          <%= ff.label "スキル1" %>
+          <%= ff.text_field :skl_name, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+          <%= ff.label "スキル1属性" %>
+          <%= ff.text_field :skl_one_element, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+          <%= ff.label "スキル1詳細" %>
+          <%= ff.text_area :skl_one_detail, 
+                          row: "5",
+                          class: "form-control" 
+          %>
+        </div>
+      <% end %>
+      <!--==============================================================-->
       
       <div class="form-group">
         <%= f.label "進化前" %>
