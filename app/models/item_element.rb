@@ -7,7 +7,16 @@ class ItemElement < ApplicationRecord
   scope :sort_order, -> (order) { order(order) }
   scope :display_list, -> (page) { page(page).per(PER) }
   
-  scope :on_element, -> (element) {find_by(element_id: element)}
+  # scope :on_element, -> (element) {where(element_id: element)}
+  
+      # [1,4,5,6 8]
+      
+ 
+  
+  
+  
+  
+  # ItemElement.where(element_id: params[:element_id]).item_id.uniq
   
   scope :element_items, -> (element, page) { 
     on_element(element).

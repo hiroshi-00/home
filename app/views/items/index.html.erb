@@ -6,6 +6,8 @@
   <div class="col-9">
     
     <div class="container">
+      <%= link_to "+ New", new_item_path %>
+    
       <% if @category.present? %>
         <%= link_to "トップ", root_path %> > <%= @category.name %>
         <h1><%= @category.name %>の商品一覧<%= @items.count %>件</h1>
@@ -25,7 +27,7 @@
       <div class="row w-100">
 
         <% @items.each do |item| %>
-          <div class="card mx-2" style = "width: 13rem;">
+          <div class="card m-2" style = "width: 13rem;">
             <%= link_to item_path(item) do %>
               <div class = "card-body">
                 <p class="card-title">
@@ -46,5 +48,5 @@
     </div>
   </div>
              
-  <%= link_to "+ New", new_item_path %>
+  
 </div>

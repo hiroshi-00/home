@@ -29,7 +29,7 @@ class Item < ApplicationRecord
   scope :on_category, -> (category) {where(category_id: category)}
   
   scope :sort_order, -> (order) { order(order) }
-  scope :search_item, -> (item, keyword) { where("#{item} LIKE ?", "%#{keyword}%")}
+  scope :search_item, -> (keyword) { where("name LIKE ?", "%#{keyword}%")}
 
   scope :category_items, -> (category, page) { 
     on_category(category).
@@ -55,6 +55,29 @@ class Item < ApplicationRecord
       "図鑑番号が高い順" => "no desc"
     }
   }
+  
+  
+  
+
+#   scope :search_item, -> (search_params) do      #scopeでsearchメソッドを定義。(search_params)は引数
+#     return if search_params.blank?      #検索フォームに値がなければ以下の手順は行わない
+
+#     name_kana_like(search_params[:name_kana])
+#       .check_in_from(search_params[:check_in_from])
+#       .check_in_to(search_params[:check_in_to])
+#       .phone_like(search_params[:phone])   #下記で定義しているscopeメソッドの呼び出し。「.」で繋げている
+#   end
+
+#   scope :item_name_like, -> (item_name) { where("name LIKE ?", "%#{item}%")}
+#   scope :skl_name_like, -> (skl_name) { where("name LIKE ?", "%#{item}%")}
+
+#   scope :name_kana_like, -> (name_kana) { where('name_kana LIKE ?', "%#{name_kana}%") if name_kana.present? }  #scopeを定義。
+#   scope :check_in_from, -> (from) { where('? <= check_in', from) if from.present? }
+#   scope :check_in_to, -> (to) { where('check_in <= ?', to) if to.present? }
+#   #日付の範囲検索をするため、fromとtoをつけている
+#   scope :phone_like, -> (phone) { where('phone LIKE ?', "%#{phone}%") if phone.present? }
+# 　scope :メソッド名 -> (引数) { SQL文 }
+# 　if 引数.present?をつけることで、検索フォームに値がない場合は実行されない
 
   
 end
