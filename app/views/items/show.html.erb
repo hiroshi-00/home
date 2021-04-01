@@ -1,5 +1,8 @@
 <div class = "container">
   <div class = "row">
+    <div class = "row">
+      <%= link_to "Home ", items_path %> > <%= @item.name %>
+    </div>
     <div class = "container row mx-auto mb-3">
       <div class="col-1">
         <%= link_to "←", items_path %>
@@ -63,8 +66,20 @@
           </div>
           
         </div>
-      
         
+        <div >
+          <% @skills.each do |skills| %>
+            <div class = "border-bottom d-flex justify-content-between">
+              <h5 class = "skl_name"><%= skills.skill.skl_name %></h5>
+              <span>属性</span>
+            </div>
+            
+            
+            <p><%= skills.skill.skl_detail %></p>
+          <% end %>
+          
+          
+        </div>
         
       </div>
     </div>
@@ -127,14 +142,16 @@
 <div>
   <%= @elements.each do |elements| %>
     <div>
-      <small>武器属性：</small><%= elements.element.skl_element %>
+      <small>武器属性：</small><%= elements.element.item_element %>
     </div>
     <hr>
     <div>
-      
+      <small>武器属性：</small><%= elements.element.skl_element %>
     </div>
   <% end %>
 </div>
+<hr>
+
 
 
 

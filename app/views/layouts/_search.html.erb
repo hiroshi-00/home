@@ -1,23 +1,94 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="myModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--<====================================================検索=====>-->
+<div class="btn btn-primary" data-toggle="modal" data-target="#buy-confirm-modal-">検索</div>
+<div class="modal fade" id="buy-confirm-modal-" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="myInput">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        
+        <h5>検索</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="modal-body">
-        ...
+      <div class = "modal-body">
+        
+        
+        <form class="form-inline">
+          <%= form_with url: items_path, method: :get, local: true do |f| %>
+            <div class="d-flex flex-inline form-group">
+              <%= f.text_field :keyword, class: "form-control" %>
+            </div>
+            <%= f.submit "検索", class: "btn btn-primary" %>
+          <% end %>
+        </form>
       </div>
+        
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <div>
+          <%= @keyword %> 
+        </div>
+      </div>
+        
+        
       </div>
     </div>
   </div>
 </div>
+
+<!--<!=============================================>-->
+
+<div class="btn btn-primary" data-toggle="modal" data-target="#category-modal">選択</div>
+<div class="modal fade" id="category-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h5>選択</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+      <div class = "modal-body">
+      
+      <%= form_with url: items_path, local: true, method: "get" do |f| %>
+        <div class="field">
+          <%= f.collection_check_boxes :element_ids, Element.all, :id, :item_element do |b| %>
+            <%= b.label(class: "form-check") do %>
+              <div class = "container">
+                <div class = "row">
+                  <%= b.check_box(class: "form-check-input") %>
+                  <div class="btn btn-secondary" >
+                    <%= b.text %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          
+          <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
+            <%= b.label(class: "form-check") do %>
+              <div class = "container">
+                <div class = "row">
+                  <%= b.check_box(class: "form-check-input") %>
+                  <div class="btn btn-secondary" >
+                    <%= b.text %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <%= f.submit %>
+      <% end %>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn border-dark text-dark" data-dismiss="modal">閉じる</button>
+        <button type="submit" class="btn btn-primary" data-dismiss="modal">カートに入れる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--=================================================-->
