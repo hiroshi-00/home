@@ -53,7 +53,11 @@
       
       <%= form_with url: items_path, local: true, method: "get" do |f| %>
         <div class="field">
+<<<<<<< HEAD
           <%= f.collection_check_boxes :element_ids, Element.all, :id, :name do |b| %>
+=======
+          <%= f.collection_check_boxes :element_ids, Element.all, :id, :item_element do |b| %>
+>>>>>>> aca517f93afe1afeaa6a8f3d5bd76cbeec46506a
             <%= b.label(class: "form-check") do %>
               <div class = "container">
                 <div class = "row">
