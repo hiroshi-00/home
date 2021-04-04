@@ -7,35 +7,35 @@ class ItemsController < ApplicationController
   
   
   def index
-    logger.debug("============================ sort_params category sort  #{params[:category_ids]}")
-    
+
     if params[:category_ids].present? && params[:category_ids] != [""]
-       params[:category_ids].delete_at(0)
-      logger.debug("============================ sort_params category sort  #{params[:category_ids]}")
+      params[:category_ids].delete_at(0)
+      # @category = Category.request_category(params[:category])
       # @category = Category.where(id: params[:category_ids])
-      # logger.debug("============================ Category #{@items = Item.where(category_id: params[:category])}")
       # @items = Item.category_items(@category, params[:page])
       @items = Item.where(category_id: params[:category_ids])
       
-<<<<<<< HEAD
-    # elsif params[:element_ids].present?
-    #   params[:element_ids].delete_at(0)
-      
-    #   item_elements_search(params[:element_ids])
-    #   logger.debug("============================ sort_params element sort in #{params[:element_ids]}")
-=======
     elsif params[:element_ids].present?
       params[:element_ids].delete_at(0)
-      
       item_elements_search(params[:element_ids])
-      logger.debug("============================ sort_params element sort in #{params[:element_ids]}")
->>>>>>> aca517f93afe1afeaa6a8f3d5bd76cbeec46506a
       # @element = Element.request_element(params[:element])
       # @items = ItemElement.element_items(@element, params[:page])
-      # logger.debug("============================ ItemElement.where(element_id: 1).pluck(:item_id) #{@items = Item.where(id: ItemElement.where(element_id: params[:element]).pluck(:item_id))}")
       # @items = Item.where(id: ItemElement.where(element_id: params[:element]).pluck(:item_id))
-    
+    elsif params[:category].present?
+      @category = Category.request_category(params[:category])
+      # logger.debug("============================ Category #{@items = Item.where(category_id: params[:category])}")
+      # @items = Item.category_items(@category, params[:page])
+      @items = Item.where(category_id: params[:category])
       
+    elsif params[:element].present?
+      # logger.debug("============================ sort_params element sort in #{params[:element]}")
+      @element = Element.request_element(params[:element])
+      # @items = ItemElement.element_items(@element, params[:page])
+      # logger.debug("============================ ItemElement.where(element_id: 1).pluck(:item_id) #{@items = Item.where(id: ItemElement.where(element_id: params[:element]).pluck(:item_id))}")
+      @items = Item.where(id: ItemElement.where(element_id: params[:element]).pluck(:item_id))
+      
+    else
+      @items = Item.display_list(params[:page])
     end
 
       
@@ -51,9 +51,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    logger.debug("========================== skl_name = #{item_params[:skl_name]}")
-    logger.debug("========================== skl_detail = #{item_params[:skl_detail]}")
-    
     
     @item = Item.new(item_params)
     if @item.save
@@ -69,10 +66,11 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @elements = @item.item_elements
+    @item_element = @item.item_elements
     @skills = @item.item_skills
-    @reviews = @item.reviews
+    @reviews = @item.reviews_with_id
     @review = @reviews.new
+    @star_repeat_select = Review.star_repeat_select
   end
 
   def edit
@@ -113,51 +111,28 @@ class ItemsController < ApplicationController
        if params[:element].nil?
          params[:elements] = ""
        end
-      
     end
     
     def search
-      logger.debug("================================== search #{params[:keyword]}")
       if params[:keyword].present?
         @keyword = params[:keyword]
         @total_count = Item.search_item(@keyword).count
         @items = Item.search_item(@keyword).display_list(params[:page])
-        
-        
       elsif params[:keyword] == ""
         @total_count = Item.count
         @items = Item.display_list(params[:page])
-        
       else
         @items = Item.display_list(params[:page])
       end
     end
     
     
-<<<<<<< HEAD
-    # def item_elements_search(elements)
-    #     selected_item_elenemt = []
-        
-    #     ItemElement.where(element_id: elements).each do |item_element|
-    #       selected_item_elenemt << item_element.item_id
-    #     end
-        
-    #     @items = Item.where(id: selected_item_elenemt.uniq)
-        
-
-    # end
-=======
     def item_elements_search(elements)
-        selected_item_elenemt = []
-        
-        ItemElement.where(element_id: elements).each do |item_element|
-          selected_item_elenemt << item_element.item_id
-        end
-        
-        @items = Item.where(id: selected_item_elenemt.uniq)
-        
-
+      selected_item_elemnt = []
+      ItemElement.where(elements_id: elements).each do |item_element|
+        selected_item_elemnt << item_element.item_id
+      end
+      @items = Item.where(id: selected_item_elemnt.uniq)
     end
->>>>>>> aca517f93afe1afeaa6a8f3d5bd76cbeec46506a
     
 end

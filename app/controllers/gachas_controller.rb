@@ -1,0 +1,2 @@
+class GachasController < ApplicationController
+end

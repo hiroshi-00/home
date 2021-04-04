@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   has_many :item_skills # @item.item_skills
   has_many :skills, through: :item_skills # @item.skills
   has_many :item_elements # @item.item_elements
-  has_many :elements, through: :item_elements # @item.elements
+  has_many :elements, through: :item_elements
   accepts_nested_attributes_for :item_elements, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :item_skills, allow_destroy: true
   

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_02_050108) do
+ActiveRecord::Schema.define(version: 2021_04_04_123925) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -28,12 +28,10 @@ ActiveRecord::Schema.define(version: 2021_04_02_050108) do
 
   create_table "item_elements", force: :cascade do |t|
     t.integer "item_id"
+    t.integer "element_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "item_element_id"
-    t.string "skl_element_id"
-    t.integer "elements_id"
-    t.index ["elements_id"], name: "index_item_elements_on_elements_id"
+    t.index ["element_id"], name: "index_item_elements_on_element_id"
     t.index ["item_id"], name: "index_item_elements_on_item_id"
   end
 
@@ -89,6 +87,7 @@ ActiveRecord::Schema.define(version: 2021_04_02_050108) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "score", default: 0
     t.index ["item_id"], name: "index_reviews_on_item_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

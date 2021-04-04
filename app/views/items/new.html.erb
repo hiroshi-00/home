@@ -23,11 +23,7 @@
         <div class="form-group">
           
           <%= e.label "属性" %>
-<<<<<<< HEAD
           <%= e.collection_select :element_id, Element.all, :id, :name, { prompt: "選択してください" } , class: 'form-control' %>
-=======
-          <%= e.collection_select :element_id, Element.all, :id, :item_element, { prompt: "選択してください" } , class: 'form-control' %>
->>>>>>> aca517f93afe1afeaa6a8f3d5bd76cbeec46506a
         </div>
       <% end %>
         
@@ -124,25 +120,11 @@
         <%= f.text_field :skl_name, class: "form-control" %>
       </div>
       
-      <%= f.fields_for :item_elements do |e| %>
-        <div class="form-group">
-          
-          <%= e.label "スキル属性" %>
-<<<<<<< HEAD
-          <%= e.collection_select :element_id, Element.all, :id, :name, { prompt: "選択してください" } , class: 'form-control' %>
-=======
-          <%= e.collection_select :element_id, Element.all, :id, :skl_element, { prompt: "選択してください" } , class: 'form-control' %>
->>>>>>> aca517f93afe1afeaa6a8f3d5bd76cbeec46506a
-        </div>
-      <% end %>
-      
       <div class="form-group">
         <%= f.label "スキル詳細" %>
         <%= f.text_area :skl_detail, class: "form-control" %>
       </div>   
-      
-      
-        
+
       <!--==============================================================-->
 
       <%= f.submit "アイテムを登録", class:"btn btn-success" %>

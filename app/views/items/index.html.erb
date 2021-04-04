@@ -33,9 +33,9 @@
                 <p class="card-title">
                   ★<%= item.rarity %>
                 </p>
-
+                <%= link_to 'Destroy', item, method: :delete%>
                 <%= image_tag "/images/goods.png", class: "img-thumbnail"%>
-
+                
                 <p class="card-text mt-2">No.<%= item.no %></p>
                 <p class="card-text"><%= item.name %></p>
               </div>
