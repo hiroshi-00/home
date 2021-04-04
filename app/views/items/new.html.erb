@@ -23,7 +23,7 @@
         <div class="form-group">
           
           <%= e.label "属性" %>
-          <%= e.collection_select :element_id, Element.all, :id, :item_element, { prompt: "選択してください" } , class: 'form-control' %>
+          <%= e.collection_select :element_id, Element.all, :id, :name, { prompt: "選択してください" } , class: 'form-control' %>
         </div>
       <% end %>
         
@@ -124,7 +124,7 @@
         <div class="form-group">
           
           <%= e.label "スキル属性" %>
-          <%= e.collection_select :element_id, Element.all, :id, :skl_element, { prompt: "選択してください" } , class: 'form-control' %>
+          <%= e.collection_select :element_id, Element.all, :id, :name, { prompt: "選択してください" } , class: 'form-control' %>
         </div>
       <% end %>
       

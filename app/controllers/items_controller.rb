@@ -17,11 +17,11 @@ class ItemsController < ApplicationController
       # @items = Item.category_items(@category, params[:page])
       @items = Item.where(category_id: params[:category_ids])
       
-    elsif params[:element_ids].present?
-      params[:element_ids].delete_at(0)
+    # elsif params[:element_ids].present?
+    #   params[:element_ids].delete_at(0)
       
-      item_elements_search(params[:element_ids])
-      logger.debug("============================ sort_params element sort in #{params[:element_ids]}")
+    #   item_elements_search(params[:element_ids])
+    #   logger.debug("============================ sort_params element sort in #{params[:element_ids]}")
       # @element = Element.request_element(params[:element])
       # @items = ItemElement.element_items(@element, params[:page])
       # logger.debug("============================ ItemElement.where(element_id: 1).pluck(:item_id) #{@items = Item.where(id: ItemElement.where(element_id: params[:element]).pluck(:item_id))}")
@@ -126,16 +126,16 @@ class ItemsController < ApplicationController
     end
     
     
-    def item_elements_search(elements)
-        selected_item_elenemt = []
+    # def item_elements_search(elements)
+    #     selected_item_elenemt = []
         
-        ItemElement.where(element_id: elements).each do |item_element|
-          selected_item_elenemt << item_element.item_id
-        end
+    #     ItemElement.where(element_id: elements).each do |item_element|
+    #       selected_item_elenemt << item_element.item_id
+    #     end
         
-        @items = Item.where(id: selected_item_elenemt.uniq)
+    #     @items = Item.where(id: selected_item_elenemt.uniq)
         
 
-    end
+    # end
     
 end
