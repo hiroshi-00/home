@@ -1,4 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+
 @import "bootstrap";
+@import "summernote-bs4";
+
 @import "layouts";
 @import "items";
-@import "element_color";
+
+.mypage_btn_pointer {
+  cursor: pointer;
+}
+
+.dashboard_image {
+  height: 350px !important;
+  width: 420px !important; 
+}
+
+.item_index_image {
+  height: 100px !important;
+  width: 118px !important;
+}

@@ -26,7 +26,7 @@ class Users::SessionsController < Devise::SessionsController
     root_path
   end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_in_params

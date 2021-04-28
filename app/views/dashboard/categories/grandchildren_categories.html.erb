@@ -1,0 +1,20 @@
+<%= javascript_include_tag "category.js" %>
+
+<div class="w-75">
+  <h2>子の子カテゴリー登録</h2>
+  <%= form_with(model: @category, url: dashboard_categories_path, local: true) do |f| %>
+  
+    <div class = "form-group">
+      <%= label_tag '親カテゴリー' %>
+      <div class = "category-form">
+        <%= select_tag 'parent_id', options_for_select(@category_parent_array), id: 'parent-category', class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "＋新規作成", class: "btn samazon-submit-button" %>
+    </div>
+  <% end %>
+
+  <%= render partial: "dashboard/categories/categories", locals: { categories: @categories } %>
+</div>

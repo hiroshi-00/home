@@ -1,0 +1,29 @@
+<div class = "container">
+  <%= form_with model: post, url: dashboard_posts_path(@post), local: true do |f| %>
+    <% if post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+  
+        <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="from-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control'  %>
+    </div>
+  
+    <div class="from-group">
+      <%= f.label :content %>
+      <%= f.text_area :content, 'data-provider': :summernote, class: 'form-control'  %></div>
+    </div>
+  
+    <div class="actions text-center mt-3">
+      <%= f.submit "投稿", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

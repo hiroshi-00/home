@@ -1,11 +1,9 @@
 class ItemElement < ApplicationRecord
   belongs_to :item
   belongs_to :element
-  
-  PER = 15
+  extend DisplayList
   
   scope :sort_order, -> (order) { order(order) }
-  scope :display_list, -> (page) { page(page).per(PER) }
   
   scope :element_items, -> (element, page) { 
     on_element(element).

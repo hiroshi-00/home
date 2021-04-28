@@ -39,7 +39,7 @@
 
 <div class="btn btn-primary" data-toggle="modal" data-target="#category-modal">選択</div>
 <div class="modal fade" id="category-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         
@@ -49,43 +49,40 @@
         </button>
 
       </div>
-      <div class = "modal-body">
+      <div class = "modal-body d-flex justify-content-start">
       
       <%= form_with url: items_path, local: true, method: "get" do |f| %>
-        <div class="field">
+      
+        <div class="form-group">
+          <table><tr><td>属性</td><td width="96%"><hr color="lightgrey" size="0.5"></td></tr></table>
           <%= f.collection_check_boxes :element_ids, Element.all, :id, :name do |b| %>
-            <%= b.label(class: "form-check") do %>
-              <div class = "container">
-                <div class = "row">
-                  <%= b.check_box(class: "form-check-input") %>
-                  <div class="btn btn-secondary" >
-                    <%= b.text %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-          
-          <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
-            <%= b.label(class: "form-check") do %>
-              <div class = "container">
-                <div class = "row">
-                  <%= b.check_box(class: "form-check-input") %>
-                  <div class="btn btn-secondary" >
-                    <%= b.text %>
-                  </div>
-                </div>
+            <%= b.label(class: "form-check-label m-3") do %>
+              
+              <%= b.check_box(class: "form-check-input") %>
+              <div class="btn btn-secondary" >
+                <%= b.text %>
               </div>
             <% end %>
           <% end %>
         </div>
-        <%= f.submit %>
-      <% end %>
+        
+        <div class="form-group">
+          <table><tr><td>カテゴリー</td><td width="90%"><hr color="lightgrey" size="0.5"></td></tr></table>
+          <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |a| %>
+            <%= a.label(class: "form-check-label m-3") do %>
+              <%= a.check_box(class: "form-check-input") %>
+              <div class="btn btn-secondary" >
+                <%= a.text %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn border-dark text-dark" data-dismiss="modal">閉じる</button>
-        <button type="submit" class="btn btn-primary" data-dismiss="modal">カートに入れる</button>
+        <%= f.submit "検索", class: "btn"%>
+      <% end %>
       </div>
     </div>
   </div>

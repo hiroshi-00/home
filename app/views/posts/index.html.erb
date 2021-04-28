@@ -1,0 +1,31 @@
+<div class = "row">
+  <div class="col-2">
+  <%= render partial: "layouts/sidebar", locals: { categories: @categories, elements: @elements } %>
+  </div>
+  <div class = "col-9">
+    
+    <h2 class = "text-center my-3">投稿一覧</h2>
+    
+    <% @posts.each do |post| %>
+      
+      <div class="card shadow mb-5 bg-white rounded">
+        <div class="card-body">
+          <div class="card-title">
+            <div class = "row d-flex justify-content-between mx-2">
+              <h5 class="card-text"><%= post.title %></h5>
+              <small class = "text-secondary user-time">更新日：<%= post.updated_at.strftime("%Y-%m-%d %H:%M")%></small>
+            </div>
+            <hr>
+            
+          </div>
+          <p class="card-text d-flex justify-content-between">
+            <%= truncate_content(post.content) %>
+            <%= link_to '詳細を見る', post, class: "btn btn-outline-primary" %>
+          </p>
+          
+        </div>
+      </div>
+     
+    <% end %>
+  </div>
+</div>

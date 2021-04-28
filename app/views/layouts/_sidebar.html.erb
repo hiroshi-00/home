@@ -1,14 +1,19 @@
 <div class="container">
+  <h2>装備品</h2>
   <% categories.each do |category| %>
     <div>
-      <h5><%= link_to category.name, items_path(category: category.id) %></h5>
+      <% if category.parent_id %>
+        <label class = "ml-2"><%= link_to category.name, items_path(category: category.id) %></label>
+      <% else %>
+        <h5 class = "font-weight-bold"><%= link_to category.name, items_path(category: category.id) %></h5>
+      <% end %>
     </div>
   <% end %>
   
   <h2>属性</h2>
   <% elements.each do |element| %>
     <div>
-      <h5><%= link_to element.name, items_path(element: element.id) %></h5>
+      <label><%= link_to element.name, items_path(element: element.id) %></label>
     </div>
   <% end %>
 </div>

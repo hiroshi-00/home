@@ -1,0 +1,51 @@
+
+<div class="row">
+  <div class="col-2">
+    <%= render partial: "layouts/sidebar", locals: { categories: @categories, elements: @elements } %>
+  </div>
+  <div class="col-9">
+
+    <div class="container mt-4">
+      <h3 class = "text-center">ピックアップガチャ！</h3>
+
+      <div class = "card px-3">
+        <div class="row w-100 flex-row flex-nowrap overflow-auto">
+          <% @shops.each do |shop| %>
+            <div class="card m-2" style = "width: 10rem;">
+              <%= link_to item_path(shop) do %>
+                <%= image_tag "/images/goods.png", class: "img-thumbnail"%>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
+      
+      <hr>
+      
+      <div class="row w-100">
+        
+        <% @shops.each do |shop| %>
+          <div class="card m-2" style = "width: 13rem;">
+            <%= link_to item_path(shop) do %>
+              <div class = "card-body">
+                <p class="card-title">
+                  ★<%= shop.rarity %>
+                </p>
+                <%= link_to 'Destroy', shop, method: :delete%>
+                <%= image_tag "/images/goods.png", class: "img-thumbnail"%>
+                
+                <p class="card-text mt-2">No.<%= shop.no %></p>
+                <p class="card-text"><%= shop.name %></p>
+              </div>
+              
+            <% end %>
+          </div>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+             
+  
+</div>

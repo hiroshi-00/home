@@ -51,6 +51,15 @@ gem 'kaminari'
 
 gem 'ancestry'
 
+# WYSIWYGエディター
+gem 'simple_form'
+gem 'summernote-rails'
+gem 'autoprefixer-rails'
+
+# S3画像
+gem 'carrierwave'
+gem 'fog-aws'
+
 # それらしい値を自動生成できる
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 

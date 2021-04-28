@@ -1,0 +1,39 @@
+<div class="container  d-flex justify-content-center mt-3">
+  <div class="w-75">
+    <h1>お気に入り</h1>
+
+    <hr>
+
+    <div class="row">
+      <% @favorites.each do |favorite| %>
+        <div class="col-md-8 mt-2">
+          <div class="d-inline-flex">
+            <%= link_to item_path(favorite.item_id), class: "w-25" do %>
+            
+              <% if favorite.item.image.present? %>
+                <%= image_tag favorite.item.image.to_s, class: "img-thumbnail favorite_image" %>
+              <% else %>
+                <%= image_tag "/images/goods.png", class: "img-thumbnail favorite_image"%>
+              <% end %>
+              
+              
+              
+            <% end %>
+            <div class="container mt-3">
+              <h5 class = "score-color w-100"><%= rearity_star(favorite.item.rarity) %></h5>
+              <h5 class = "w-100"><%= favorite.item.name %></h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 d-flex align-items-center justify-content-end">
+          <%= link_to item_likes_path(favorite.item), :method => :delete, data: {confirm: "#{favorite.item.name}を削除しますか？"} do %>
+            削除
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    
+    <hr>
+
+  </div>
+</div>

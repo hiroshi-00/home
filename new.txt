@@ -1,0 +1,94 @@
+<div class="form-group">
+  <div class="d-flex justify-content-between">
+    <div class="form-group">
+      <%= f.label "カテゴリー"%>
+      <%= f.collection_select :category_id, @parent, :id, :name, { prompt: "選択してください" },id: 'input_category', 
+      class: 'form-control', 
+      onselect = "switchFomInfo('.wCategory', '.dCategory', '.mCategory', '.sCategory');" %>
+    </div>
+  </div>
+  
+  <div class="collapse wCategory">
+    <%= render "######", locals: {****************} %>
+    <div class="form-group ">
+      <%= f.label "カテゴリー"%>
+      <%= f.collection_select :category_id, @child, :id, :name, { prompt: "選択してください" }, class: 'form-control' %>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  var input_category = document.getElementById('input_category');
+  input_category.addEventListener("change", function(){
+    var switchFormInfo = (Weapon, Dress, Medal, Servant) => {
+      if (this.value == 1) {
+        $Weapon).collapse('show');
+        console.log(this.value);
+      } else if (this.value == 24) {
+        console.log(this.value);
+      } else if (this.value == 25) {
+        console.log(this.value);
+      }  else if (this.value == 26) {
+        console.log(this.value);
+      }
+    }
+  })
+</script>
+
+
+フォームで @parent == 武器の場合
+class wCategoryを表示させる
+フォームが @parent == 服装の場合
+class dCategoryを表示させる....
+
+コードが長くなるのでパーシャルで可読性を上げる
+
+
+=================================================== 検索機能 ======================================
+
+
+<button onclick="addChildCreate()">子要素を追加(新規)</button><br>
+<button onclick="addChildCopy()">子要素を追加(コピー)</button><br>
+<button onclick="addChildExist()">子要素を追加(既存要素)</button><br>
+<button id="0" onclick="deleteBtn(this)">削除</button>
+
+<div id="parent">親要素
+  <div id="child1">子要素1</div>
+  <div id="child2">子要素2</div>
+  <div id="child3">子要素3</div>
+</div>
+
+<script type="text/javascript">
+  var parent = document.getElementById("parent");
+  var idx = 4;
+
+  // 子要素を追加(新規)
+  function addChildCreate() {
+    var child = document.createElement("div");
+    addChild(child);
+  }
+
+  // 子要素を追加(コピー)
+  function addChildCopy() {
+    // 先頭の子要素をコピーする
+    var child = document.getElementById("parent").firstElementChild.cloneNode(true);
+    addChild(child);
+  }
+
+  // 子要素を追加(既存の要素)
+  function addChildExist() {
+    // 先頭の子要素を取得する
+    var child = document.getElementById("parent").firstElementChild;
+    addChild(child);
+  }
+
+  // 子要素を追加(共通)
+  function addChild(child) {
+    child.id = "child" + idx;
+    child.innerText = "子要素" + idx;
+    idx++;
+    child = parent.appendChild(child);
+    console.log(child);
+  }
+</script>

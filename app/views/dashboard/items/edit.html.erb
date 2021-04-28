@@ -1,0 +1,53 @@
+<%= javascript_include_tag "script.js" %>
+
+<div class="w-75">
+  <h1>新しいアイテムを追加</h1>
+
+    <%= form_with model: @item, local: true do |f| %>
+      <div class = "form-group">
+        <%= label_tag 'カテゴリー' %>
+        <div class = "category-form">
+          <%= select_tag 'parent_id', options_for_select(@category_parent_array), id: 'parent-category', class: 'form-control' %>
+          <i class = "fas fa-chevron-down"></i>
+        </div>
+      </div>
+      
+      <div class="collapse dress_form" id = "form_remove">
+        <%= render partial: "items/dress_form", locals: {:f => f} %>
+        <%= f.submit "アイテムを登録", class:"btn btn-success" %>
+      </div>
+      <div class="collapse medal_form" id = "form_remove">
+        <%= render partial: "items/medal_form", locals: {:f => f} %>
+        <%= f.submit "アイテムを登録", class:"btn btn-success" %>
+      </div>
+      
+      <div class="collapse touteki_form" id = "child_form_remove">
+        <%= render partial: "items/touteki_form", locals: {:f => f} %>
+        <%= f.submit "アイテムを登録", class:"btn btn-success" %>
+      </div>
+      
+      <div class="collapse weapon_form" id = "grand_form_remove">
+        <%= render partial: "items/weapon_form", locals: {:f => f} %>
+        <%= f.submit "アイテムを登録", class:"btn btn-success" %>
+      </div>
+      
+      <div class="collapse kakusann_tannpatu" id = "grand_form_remove">
+        <%= render partial: "items/kakusann_tannpatu", locals: {:f => f} %>
+        <%= f.submit "アイテムを登録", class:"btn btn-success" %>
+      </div>
+      
+      <div class="collapse kakusann_tahatu" id = "grand_form_remove">
+        <%= render partial: "items/kakusann_tahatu", locals: {:f => f} %>
+        <%= f.submit "アイテムを登録", class:"btn btn-success" %>
+      </div>
+      
+      <div class="collapse secchi" id = "grand_form_remove">
+        <%= render partial: "items/secchi", locals: {:f => f} %>
+        <%= f.submit "アイテムを登録", class:"btn btn-success" %>
+      </div>
+      
+    <% end %>
+
+    <%= link_to "アイテム一覧に戻る", items_path %>
+
+</div>

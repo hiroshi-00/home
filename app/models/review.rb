@@ -21,4 +21,5 @@ class Review < ApplicationRecord
     review.item_id = review_params[:item_id]
     save
   end
+
 end

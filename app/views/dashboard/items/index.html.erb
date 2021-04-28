@@ -1,0 +1,71 @@
+<h1>装備品管理</h1>
+<%= form_with url: dashboard_items_path, method: :get, local: true, class: "form-inline" do |f| %>
+    並び替え
+  <% if @sorted.present? %>
+    <%= f.select :sort, @sort_list, selected: @sorted, onChange: "javascript: this.form.submit();", class: "form-inline ml-2 form-control" %>
+  <% else %>
+    <%= f.select :sort, @sort_list, {}, onChange: "javascript: this.form.submit();", class: "form-inline ml-2 form-control" %>
+  <% end %>
+<% end %>
+<div class="w-80 mt-2">
+  <div class="w-75">
+    <%= form_with url: dashboard_items_path, method: :get, local: true do |f| %>
+      <div class="d-flex flex-inline form-group">
+        <div class="d-flex align-items-center">
+          装備品名
+        </div>
+        <%= f.text_field :keyword, class: "form-control ml-2 w-50", placeholder: "装備品名" %>
+      </div>
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <div class="d-flex justify-content-between w-75 mt-4">
+    <h3>合計<%= @total_count %>件</h3>
+
+    <%= link_to "+ 新規作成", new_dashboard_item_path, class: "btn samazon-submit-button" %>
+  </div>
+  <table class="table table-responsive mt-5">
+
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">画像</th>
+        <th scope="col">装備品名</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+      <tr>
+        <th scope="row"><%= item.no %></td>
+        <td>
+          <% if item.image.present? %>
+            <%= image_tag item.image.to_s, class: "img-thumbnail dashboard_image" %>
+          <% else %>
+            <%= image_tag "/images/goods.png", class: "img-thumbnail dashboard_image" %>
+          <% end %>
+        </td>
+        <td><%= item.name %></td>
+        
+        
+        
+        <td>
+          <%= link_to "編集", edit_dashboard_item_path(item), class: "dashboard-edit-link" %>
+        </td>
+        <td>
+          <%= link_to "削除", dashboard_item_path(item), method: :delete, onclick: "event.preventDefault(); document.getElementById('logout-form').submit", class: "dashboard-delete-link" %>
+        </td>
+
+          <%= form_with(model: item, url: dashboard_item_path(item), method: :delete, local: true, id: "logout-form") do |f| %>
+          <% end %>
+        </td>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @items %>
+</div>

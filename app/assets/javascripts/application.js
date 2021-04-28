@@ -10,12 +10,17 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
-//= require_tree .
 
-// Bootstrap4
 //= require jquery3
+//= require rails-ujs
 //= require popper
 //= require bootstrap-sprockets 
+//= require summernote/summernote-bs4.min
+//= require summernote-init
+//= require activestorage
+//= require turbolinks
+
+// load specific locale(ja-JP)
+//= require summernote/lang/summernote-ja-JP
+
+

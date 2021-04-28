@@ -1,0 +1,31 @@
+<div class="w-75">
+  <h2 class = "text-center">投稿一覧</h2>
+  <div class="d-flex justify-content-between w-75 mt-4">
+    <h3>合計<%= @total_count %>件</h3>
+
+     <%= link_to "+ 新規作成", new_dashboard_post_path, class: "btn btn-primary" %>
+  </div>
+  
+  <hr>
+  
+  <% @posts.each do |post| %>
+  
+    <div class="card mb-2 shadow p-3 mb-5 bg-white rounded">
+      <div class="card-body">
+        <div class="card-title">
+          <div class = "row d-flex justify-content-between mx-2">
+            <h5 class="card-text"><%= post.title %></h5>
+            <small class = "text-secondary user-time">更新日：<%= post.updated_at.strftime("%Y-%m-%d %H:%M")%></small>
+          </div>
+          <hr>
+          
+        </div>
+        <p class="card-text"><%= truncate_content(post.content) %></p>
+        
+      
+        <%= link_to '編集', edit_dashboard_post_path(post), class: "btn btn-outline-primary" %>
+        <%= link_to '削除', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+      </div>
+    </div>
+  <% end %>
+</div>

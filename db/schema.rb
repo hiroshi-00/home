@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_123925) do
+ActiveRecord::Schema.define(version: 2021_04_19_130408) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -24,6 +37,15 @@ ActiveRecord::Schema.define(version: 2021_04_04_123925) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+  end
+
+  create_table "item_categories", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_item_categories_on_category_id"
+    t.index ["item_id"], name: "index_item_categories_on_item_id"
   end
 
   create_table "item_elements", force: :cascade do |t|
@@ -66,10 +88,8 @@ ActiveRecord::Schema.define(version: 2021_04_04_123925) do
     t.integer "kakusei"
     t.boolean "shop"
     t.boolean "gacha"
-    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_items_on_category_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -79,6 +99,13 @@ ActiveRecord::Schema.define(version: 2021_04_04_123925) do
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_likes_on_item_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|

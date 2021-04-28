@@ -1,0 +1,20 @@
+<div class="container ml-3">
+
+  <h2>装備品管理</h2>
+  <div class="d-flex flex-column">
+    
+    <label class="samazon-sidebar-category-label">
+      <%= link_to "商品一覧", dashboard_items_path %>
+    </label>
+    <label class="samazon-sidebar-category-label">
+      <%= link_to "親カテゴリ管理", main_categories_dashboard_categories_path %>
+    </label>
+    <label class="samazon-sidebar-category-label">
+      <%= link_to "子カテゴリ管理", dashboard_categories_path %>
+    </label>
+    
+    <label class="samazon-sidebar-category-label">
+      <%= link_to "子の子カテゴリ管理", grandchildren_categories_dashboard_categories_path %>
+    </label>
+  </div>
+</div>

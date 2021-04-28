@@ -1,6 +1,6 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm samazon-header-container">
-    <%= link_to root_path do %>
+  <nav class="navbar navbar-expand-md navbar-light bg-white">
+    <%= link_to items_path do %>
       HOME
     <% end %>
     
@@ -11,44 +11,65 @@
     <%= render partial: "layouts/search" %> 
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- Right Side Of Navbar -->
       <ul class="navbar-nav ml-auto mr-5 mt-2">
-      <!-- user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
       <% if user_signed_in? %>
-        <li class="nav-item mr-5">
-          <%= link_to "#", class: "nav-link" do %>
+      
+        <li class ="nav-item dropdown" role='presentation'>
+          <a class = "dropdown-toggle nav-link" data-toggle='dropdown' href='#' role='button' aria-expanded='false'>
+            <i class = "fas fa-list-ul"></i>
+            <span>
+              カテゴリーから探す
+            </span>
+          </a>
+          <ul class = "dropdown-menu" role='menu'>
+            <li role='presentation'>
+              <% Category.where(ancestry: nil).each do |category| %>
+                <li><%= link_to category.name, items_path(category: category.id), id: "#{category.id}", class: 'parent-category' %></li>
+              <% end %>
+            </li>
+            <br>
+            <li role='presentation' class='children-list'></li>
+            <br>
+            <li role='presentation' class='grandchildren-list'></li>
+          </ul>
+        </li>
+        
+          
+        <li class="nav-item">
+          <%= link_to mypage_users_path, class: "nav-link" do %>
             <i class="fas fa-user mr-1"></i><label>マイページ</label>
           <% end %>
         </li>
-        <li class="nav-item mr-5">
-          <%= link_to "#", class: "nav-link" do %>
+        
+        <li class="nav-item">
+          <%= link_to posts_path, class: "nav-link" do %>
+            <i class="far fa-calendar-plus"></i><label>イベント一覧</label>
+          <% end %>
+        </li>
+        
+        <li class="nav-item">
+          <%= link_to mypage_favorite_users_path, class: "nav-link" do %>
             <i class="far fa-heart"></i>
           <% end %>
         </li>
-        <li class="nav-item mr-5">
-          <%= link_to "#", class: "nav-link" do %>
-            <i class="fas fa-shopping-cart"></i>
-          <% end %>
-        </li>
+        
       <% else %>
-        <li class="nav-item mr-5">
+        <li class="nav-item">
           <%= link_to new_user_registration_path, class: "nav-link" do %>
             <label>新規登録</label>
           <% end %>
         </li>
-        <li class="nav-item mr-5">
+        <li class="nav-item">
           <%= link_to login_path, class: "nav-link" do %>
             <label>ログイン</label>
           <% end %>
         </li>
         <hr>
-        <li class="nav-item mr-5">
+        <li class="nav-item">
           <%= link_to login_path, class: "nav-link" do %><i class="far fa-heart"></i><% end %>
-        </li>
-        <li class="nav-item mr-5">
-          <%= link_to login_path, class: "nav-link" do %><i class="fas fa-shopping-cart"></i><% end %>
         </li>
       <% end %>
     </div>
   </nav>
+
 </header>
